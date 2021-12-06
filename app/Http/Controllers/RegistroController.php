@@ -14,7 +14,7 @@ class RegistroController extends Controller
      */
     public function index(Request $request)
     {
-        $array = [];
+        $array = [ ];
         $username = $request->post("username");
         $mail = $request->post("mail");
         $password = $request->post("password");

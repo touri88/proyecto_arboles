@@ -16,16 +16,17 @@ class TierraController extends Controller
     {
         $provincia = $request->get("provincia_tierra");
         $localidad = $request->get("localidad_tierra");
+        $tipo = $request->get("tipo_tierra");
 
-
-        $tierra= DB::table("tierra")->select("*")
+        $tierra = DB::table("tierra")->select("*")
                                     ->where("provincia_tierra","like" , "%".$provincia. "%")
                                     ->where("localidad_tierra", "like", "%".$localidad. "%")
+                                    ->where("tipo_tierra", "like", "%".$tipo. "%")
                                     ->get();
 
         $parametro = [
             "tierra" => $tierra,
-            "titulo" => "Listado de espacios para plantar"
+            "titulo" => "Espacios disponibles para plantar"
 
         
         ];
@@ -39,7 +40,10 @@ class TierraController extends Controller
      */
     public function create()
     {
-        //
+        $parametros = [
+            "titulo" => "Ofrecer espacio para plantar"
+        ];
+        return view("tierra.nuevotierra", $parametros);
     }
 
     /**
@@ -50,7 +54,21 @@ class TierraController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipo = $request->post("tipo_tierra");
+        $userarbol =  $request->post("user_tierra");
+        $provincia = $request->post("provincia_tierra");
+        $localidad = $request->post("localidad_tierra");
+        
+        
+        DB::table("tierra")->insert([
+            "tipo_tierra" => $tipo,
+            "provincia_tierra" => $provincia,
+            "localidad_tierra" => $localidad,
+            "user_tierra" => $userarbol
+            
+        ]);
+        
+        return redirect()->route("tierra.index");
     }
 
     /**
@@ -97,4 +115,5 @@ class TierraController extends Controller
     {
         //
     }
+
 }

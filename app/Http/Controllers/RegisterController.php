@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
 
-class LoginController extends Controller
+class RegisterController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +14,7 @@ class LoginController extends Controller
      */
     public function index()
     {
-        return view('usuarios.login');
+        //
     }
 
     /**
@@ -23,7 +24,7 @@ class LoginController extends Controller
      */
     public function create()
     {
-        //
+        return view('auth.register');
     }
 
     /**
@@ -34,7 +35,16 @@ class LoginController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate(request(),[
+                'name' => 'required',
+                'email' => 'required|email',
+                'password' =>'required|confirmed'
+        ]);
+
+        $user = User::create(request(['name','email','password']));
+
+        auth()->login($user);
+        return redirect()->to('/');
     }
 
     /**

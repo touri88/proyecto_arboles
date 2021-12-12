@@ -1,8 +1,17 @@
+@extends('layouts.app')
+
+@section('title','Login')
+
+@section('content')
+
+
+
 <h1> {{ $titulo }} </h1>
 
 <form action="tierra" method="get">
     <label>Provincia: </label><input type="text" name="provincia_tierra"><br>
     <label>Localidad: </label><input type="text" name="localidad_tierra"><br>
+    <label>Tipo: </label><input type="text" name="tipo_tierra"><br>
     <button type="submit">Buscar</button>
 </form>
 
@@ -24,3 +33,7 @@
         @endforeach
     </tbody>
 </table>
+
+
+
+@endsection

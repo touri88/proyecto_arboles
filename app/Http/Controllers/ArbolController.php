@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+
 class ArbolController extends Controller
 {
     /**
@@ -16,11 +17,12 @@ class ArbolController extends Controller
     {
         $provincia = $request->get("provincia_arbol");
         $localidad = $request->get("localidad_arbol");
-
+        $tipo = $request->get("tipo_arbol");
 
         $arboles= DB::table("arbol")->select("*")
                                     ->where("provincia_arbol","like" , "%".$provincia. "%")
                                     ->where("localidad_arbol", "like", "%".$localidad. "%")
+                                    ->where("tipo_arbol", "like", "%".$tipo. "%")
                                     ->get();
 
         $parametro = [
@@ -39,7 +41,10 @@ class ArbolController extends Controller
      */
     public function create()
     {
-        
+        $parametros = [
+            "titulo" => "Crear nuevo Arbol"
+        ];
+        return view("arboles.nuevoarbol", $parametros);
     }
 
     /**
@@ -50,7 +55,21 @@ class ArbolController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tipo = $request->post("tipo_arbol");
+        $userarbol =  $request->post("user_arbol");
+        $provincia = $request->post("provincia_arbol");
+        $localidad = $request->post("localidad_arbol");
+        
+        
+        DB::table("arbol")->insert([
+            "tipo_arbol" => $tipo,
+            "provincia_arbol" => $provincia,
+            "localidad_arbol" => $localidad,
+            "user_arbol" => $userarbol
+            
+        ]);
+        
+        return redirect()->route("arbol.index");
     }
 
     /**
@@ -61,7 +80,7 @@ class ArbolController extends Controller
      */
     public function show($id)
     {
-        return "Este es el metodo show del ArbolController y el id es: ". $id;
+        //
     }
 
     /**
@@ -97,4 +116,6 @@ class ArbolController extends Controller
     {
         //
     }
+    
+
 }

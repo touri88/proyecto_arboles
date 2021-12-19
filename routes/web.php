@@ -29,6 +29,8 @@ Route::get('/logout', [SessionsController::class , 'destroy'])
         ->middleware('auth')        
         ->name('login.destroy'); /*CERRAR SESION*/
 
+Route::get('/profile', [SessionsController::class , 'index'])
+        ->name('profile.index');/*CONTROLADOR PARA MOSTRAR PERFIL DE USUARIO*/
 
 Route::resource('arbol', ArbolController::class); /*CONTROLADOR PARA ARBOLES*/
 Route::resource('tierra', TierraController::class);/*CONTROLADOR PARA ESPACIOS EN TIERRA DISPONIBLES*/

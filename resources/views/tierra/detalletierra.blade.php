@@ -6,7 +6,7 @@
 
 
 
-<h1>Detalle de arbol</h1>
+<h1>Detalle de espacio en tierra</h1>
 
 
 @endsection

@@ -4,17 +4,30 @@
 
 @section('content')
 
+<h1>ESTE ES EL PERFIL DE {{ auth()->user()->name }}</h1>
 
 
-<h1> {{ $titulo }} </h1>
+<h2>{{ $titulo }}</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Tipo de arbol</th>
+            <th>Provincia</th>
+            <th>Localidad</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($arboles as $item)
+            <tr>
+                <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->tipo_arbol }} </td>
+                <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->provincia_arbol }} </td>
+                <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->localidad_arbol }} </td>
+            </tr>
+        @endforeach
+    </tbody>
+</table>
 
-<form action="tierra" method="get">
-    <label>Provincia: </label><input type="text" name="provincia_tierra"><br>
-    <label>Localidad: </label><input type="text" name="localidad_tierra"><br>
-    <label>Tipo: </label><input type="text" name="tipo_tierra"><br>
-    <button type="submit">Buscar</button>
-</form>
-
+<h2>{{ $titulo2 }}</h2>
 <table>
     <thead>
         <tr>
@@ -33,7 +46,4 @@
         @endforeach
     </tbody>
 </table>
-
-
-
 @endsection

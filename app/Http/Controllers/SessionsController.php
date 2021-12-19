@@ -11,7 +11,22 @@ class SessionsController extends Controller
     
     public function index()
     {
+        $id= auth()->user()->id;
+
+        $arboles = DB::select("SELECT * FROM arboles.arbol WHERE user_arbol= $id");
+        $tierra =  DB::select("SELECT * FROM arboles.tierra WHERE user_tierra= $id");
         
+        $parametro = [
+            "arboles" => $arboles,
+            "tierra" => $tierra,
+            "titulo" => "Mis arboles ofrecidos",
+            "titulo2" => "Espacios disponibles en tierra"
+
+        
+        ];
+
+        
+        return view("auth.profile", $parametro );
     }
 
    

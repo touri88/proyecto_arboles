@@ -69,7 +69,7 @@ class ArbolController extends Controller
             
         ]);
         
-        return redirect()->route("arbol.index");
+        return redirect()->route("arbol.create");
     }
 
     /**
@@ -80,7 +80,9 @@ class ArbolController extends Controller
      */
     public function show($id)
     {
-        //
+        
+        
+        return view("arboles.detallearbol");
     }
 
     /**

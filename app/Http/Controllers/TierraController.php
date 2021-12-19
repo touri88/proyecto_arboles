@@ -68,7 +68,7 @@ class TierraController extends Controller
             
         ]);
         
-        return redirect()->route("tierra.index");
+        return redirect()->route("tierra.create");
     }
 
     /**
@@ -79,7 +79,7 @@ class TierraController extends Controller
      */
     public function show($id)
     {
-        //
+        return view("tierra.detalletierra");
     }
 
     /**

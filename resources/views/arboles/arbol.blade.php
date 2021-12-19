@@ -26,9 +26,9 @@
     <tbody>
         @foreach ($arboles as $item)
             <tr>
-                <td> {{ $item->tipo_arbol }} </td>
-                <td> {{ $item->provincia_arbol }} </td>
-                <td> {{ $item->localidad_arbol }} </td>
+                <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->tipo_arbol }} </a></td>
+                <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->provincia_arbol }} </a></td>
+                <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->localidad_arbol }} </a></td>
             </tr>
         @endforeach
     </tbody>

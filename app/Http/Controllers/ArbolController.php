@@ -93,7 +93,11 @@ class ArbolController extends Controller
      */
     public function edit($id)
     {
-        //
+        $arbol= DB::select("SELECT * FROM arboles.arbol WHERE idarbol= $id");
+
+               
+
+        return view('arboles.edit', $arbol);
     }
 
     /**
@@ -105,7 +109,20 @@ class ArbolController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $tipo = $request->post("tipo_arbol");
+        $userarbol =  $request->post("user_arbol");
+        $provincia = $request->post("provincia_arbol");
+        $localidad = $request->post("localidad_arbol");
+        
+        
+        DB::table("arbol")->where("idarbol",$id)->update([
+            "tipo_arbol" => $tipo,
+            "provincia_arbol" => $provincia,
+            "localidad_arbol" => $localidad,
+            "user_arbol" => $userarbol
+            
+        ]);
     }
 
     /**
@@ -116,7 +133,9 @@ class ArbolController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::select("DELETE FROM arboles.arbol WHERE idarbol= $id");
+        return redirect()->route("profile.index");
+        
     }
     
 

@@ -14,6 +14,7 @@
             <th>Tipo de arbol</th>
             <th>Provincia</th>
             <th>Localidad</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -22,9 +23,20 @@
                 <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->tipo_arbol }} </td>
                 <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->provincia_arbol }} </td>
                 <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->localidad_arbol }} </td>
+                <td> <a href="{{ url('/arbol/'. $item->idarbol. '/edit') }}">Editar</a> | 
+
+                    <form action="{{ url('/arbol/'. $item->idarbol) }}" method="post">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <input type="submit" onclick="return confirm('Desea borrar?')" value="Borrar">
+
+                    </form>
+                </td>
             </tr>
+            
         @endforeach
     </tbody>
+    
 </table>
 
 <h2>{{ $titulo2 }}</h2>

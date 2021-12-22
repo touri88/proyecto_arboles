@@ -5,11 +5,12 @@
 @section('content')
 
 <h1>Editar un arbol</h1>
+@foreach ($arboles as $item)
 
-<form action="" method="post">
+<form action="{{ url('/arbol/'. $item->idarbol) }}" method="post">
     @csrf
-    {{ method_field('PATCH') }}
+    {{ method_field('PUT') }}
     @include('arboles.form') 
 </form>
-
+@endforeach
 @endsection

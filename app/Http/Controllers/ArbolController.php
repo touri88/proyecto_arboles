@@ -8,11 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class ArbolController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index(Request $request)
     {
         $provincia = $request->get("provincia_arbol");
@@ -34,11 +30,7 @@ class ArbolController extends Controller
         return view("arboles.arbol", $parametro);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+   
     public function create()
     {
         $parametros = [
@@ -47,12 +39,7 @@ class ArbolController extends Controller
         return view("arboles.nuevoarbol", $parametros);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         $tipo = $request->post("tipo_arbol");
@@ -72,12 +59,7 @@ class ArbolController extends Controller
         return redirect()->route("arbol.create");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function show($id)
     {
         
@@ -85,52 +67,44 @@ class ArbolController extends Controller
         return view("arboles.detallearbol");
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
-    {
-        $arbol= DB::select("SELECT * FROM arboles.arbol WHERE idarbol= $id");
+    {   
+        $arboles= DB::select("SELECT * FROM arboles.arbol WHERE idarbol= $id");
+        
+        $parametro = [
+            "arboles" => $arboles,
+            "titulo" => "Listado de arboles"
 
-               
+        
+        ];   
 
-        return view('arboles.edit', $arbol);
+
+        return view('arboles.edit', $parametro);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function update(Request $request, $id)
     {
         
         $tipo = $request->post("tipo_arbol");
-        $userarbol =  $request->post("user_arbol");
+        $userarbol =  auth()->user()->id;
         $provincia = $request->post("provincia_arbol");
         $localidad = $request->post("localidad_arbol");
         
         
-        DB::table("arbol")->where("idarbol",$id)->update([
+        DB::table("arbol")->where("idarbol","like" , $id)->update([
             "tipo_arbol" => $tipo,
             "provincia_arbol" => $provincia,
             "localidad_arbol" => $localidad,
             "user_arbol" => $userarbol
             
         ]);
+        
+        return redirect()->route("profile.index");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
         DB::select("DELETE FROM arboles.arbol WHERE idarbol= $id");

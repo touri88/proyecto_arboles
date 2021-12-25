@@ -20,9 +20,9 @@
     <tbody>
         @foreach ($arboles as $item)
             <tr>
-                <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->tipo_arbol }} </td>
-                <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->provincia_arbol }} </td>
-                <td><a href="/arbolink/arbolink/public/arbol/{{ $item->idarbol }}"> {{ $item->localidad_arbol }} </td>
+                <td><a href="{{ route('arbol.index'); }}/{{ $item->idarbol }}"> {{ $item->tipo_arbol }} </td>
+                <td><a href="{{ route('arbol.index'); }}/{{ $item->idarbol }}"> {{ $item->provincia_arbol }} </td>
+                <td><a href="{{ route('arbol.index'); }}/{{ $item->idarbol }}"> {{ $item->localidad_arbol }} </td>
                 <td> <a href="{{ url('/arbol/'. $item->idarbol. '/edit') }}">Editar</a> | 
 
                     <form action="{{ url('/arbol/'. $item->idarbol) }}" method="post">
@@ -52,9 +52,9 @@
     <tbody>
         @foreach ($tierra as $item)
             <tr>
-                <td><a href="/arbolink/arbolink/public/tierra/{{ $item->idtierra }}"> {{ $item->tipo_tierra }} </a></td>
-                <td><a href="/arbolink/arbolink/public/tierra/{{ $item->idtierra }}"> {{ $item->provincia_tierra }} </a></td>
-                <td><a href="/arbolink/arbolink/public/tierra/{{ $item->idtierra }}"> {{ $item->localidad_tierra }} </a></td>
+                <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->tipo_tierra }} </a></td>
+                <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->provincia_tierra }} </a></td>
+                <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->localidad_tierra }} </a></td>
                 <td> <a href="{{ url('/tierra/'. $item->idtierra. '/edit') }}">Editar</a> | 
 
                     <form action="{{ url('/tierra/'. $item->idtierra) }}" method="post">

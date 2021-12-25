@@ -13,14 +13,14 @@
 
     <nav class="flex py-5 bg-indigo-500 text-white">
       <div class="w-1/2 px-12 mr-auto">
-        <a href="http://localhost/arbolink/arbolink/public/" class="text-2xl font-bold">Arbolink</a>
+        <a href="{{ route('public'); }}" class="text-2xl font-bold">Arbolink</a>
       </div>
 
       <ul class="w-1/2 ox-16 ml-auto flex justify-end pt-1">
         
         @if(auth()->check())
         <li class="mx-8">
-          <p class="text-xl"><a href="http://localhost/arbolink/arbolink/public/profile">Sesion activa: <b>{{ auth()->user()->name }}</b></a></p>
+          <p class="text-xl"><a href="{{ route('profile.index'); }}">Sesion activa: <b>{{ auth()->user()->name }}</b></a></p>
         </li>
         <li>
           <a href="{{ route('login.destroy') }}" class="font-bold hover:bg-red-700 py-3 px-4 

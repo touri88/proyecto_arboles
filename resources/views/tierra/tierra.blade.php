@@ -26,9 +26,9 @@
     <tbody>
         @foreach ($tierra as $item)
             <tr>
-                <td><a href="/arbolink/arbolink/public/tierra/{{ $item->idtierra }}"> {{ $item->tipo_tierra }} </a></td>
-                <td><a href="/arbolink/arbolink/public/tierra/{{ $item->idtierra }}"> {{ $item->provincia_tierra }} </a></td>
-                <td><a href="/arbolink/arbolink/public/tierra/{{ $item->idtierra }}"> {{ $item->localidad_tierra }} </a></td>
+                <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->tipo_tierra }} </a></td>
+                <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->provincia_tierra }} </a></td>
+                <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->localidad_tierra }} </a></td>
             </tr>
         @endforeach
     </tbody>

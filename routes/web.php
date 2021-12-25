@@ -8,7 +8,8 @@ use App\Http\Controllers\TierraController;
 
 Route::get('/', function () {
     return view('home');
-})->middleware('auth'); /*SI NO HAY SESION ACTIVA REDIRECCIONA AL LOGIN*/
+})->middleware('auth')
+->name('public'); /*SI NO HAY SESION ACTIVA REDIRECCIONA AL LOGIN*/
 
 Route::get('/register', [RegisterController::class , 'create'])
         ->middleware('guest')

@@ -7,11 +7,7 @@ use Illuminate\Support\Facades\DB;
 
 class TierraController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index(Request $request)
     {
         $provincia = $request->get("provincia_tierra");
@@ -33,11 +29,7 @@ class TierraController extends Controller
         return view("tierra.tierra", $parametro);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function create()
     {
         $parametros = [
@@ -46,12 +38,7 @@ class TierraController extends Controller
         return view("tierra.nuevotierra", $parametros);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    
     public function store(Request $request)
     {
         $tipo = $request->post("tipo_tierra");
@@ -71,49 +58,65 @@ class TierraController extends Controller
         return redirect()->route("tierra.create");
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function show($id)
     {
-        return view("tierra.detalletierra");
+        $tierra= DB::select("SELECT * FROM arboles.tierra 
+                            INNER JOIN arboles.users 
+                            ON arboles.tierra.user_tierra=arboles.users.id 
+                            WHERE idtierra= $id;");
+        
+        $parametro = [
+            "tierra" => $tierra,
+            "titulo" => "Detalle de espacio para plantar"
+       
+        ];   
+        
+        return view("tierra.detalletierra", $parametro);
+    
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function edit($id)
     {
-        //
+        $tierra= DB::select("SELECT * FROM arboles.tierra WHERE idtierra= $id");
+        
+        $parametro = [
+            "tierra" => $tierra,
+            "titulo" => "Listado de espacios para plantrar"
+
+        
+        ];   
+
+
+        return view('tierra.edit', $parametro);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function update(Request $request, $id)
     {
-        //
+        $tipo = $request->post("tipo_tierra");
+        $usertierra =  auth()->user()->id;
+        $provincia = $request->post("provincia_tierra");
+        $localidad = $request->post("localidad_tierra");
+        
+        
+        DB::table("tierra")->where("idtierra","like" , $id)->update([
+            "tipo_tierra" => $tipo,
+            "provincia_tierra" => $provincia,
+            "localidad_tierra" => $localidad,
+            "user_tierra" => $usertierra
+            
+        ]);
+        
+        return redirect()->route("profile.index");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
-        //
+        DB::select("DELETE FROM arboles.tierra WHERE idtierra= $id");
+        return redirect()->route("profile.index");
     }
 
 }

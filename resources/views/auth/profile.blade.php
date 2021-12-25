@@ -46,6 +46,7 @@
             <th>Tipo de espacio</th>
             <th>Provincia</th>
             <th>Localidad</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>
@@ -54,6 +55,15 @@
                 <td><a href="/arbolink/arbolink/public/tierra/{{ $item->idtierra }}"> {{ $item->tipo_tierra }} </a></td>
                 <td><a href="/arbolink/arbolink/public/tierra/{{ $item->idtierra }}"> {{ $item->provincia_tierra }} </a></td>
                 <td><a href="/arbolink/arbolink/public/tierra/{{ $item->idtierra }}"> {{ $item->localidad_tierra }} </a></td>
+                <td> <a href="{{ url('/tierra/'. $item->idtierra. '/edit') }}">Editar</a> | 
+
+                    <form action="{{ url('/tierra/'. $item->idtierra) }}" method="post">
+                        @csrf
+                        {{ method_field('DELETE') }}
+                        <input type="submit" onclick="return confirm('Desea borrar?')" value="Borrar">
+
+                    </form>
+                </td>
             </tr>
         @endforeach
     </tbody>

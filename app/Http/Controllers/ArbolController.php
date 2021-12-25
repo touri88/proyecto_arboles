@@ -62,9 +62,18 @@ class ArbolController extends Controller
     
     public function show($id)
     {
+        $arboles= DB::select("SELECT * FROM arboles.arbol 
+                            INNER JOIN arboles.users 
+                            ON arboles.arbol.user_arbol=arboles.users.id 
+                            WHERE idarbol= $id;");
         
+        $parametro = [
+            "arboles" => $arboles,
+            "titulo" => "Detalle de arbol"
+       
+        ];   
         
-        return view("arboles.detallearbol");
+        return view("arboles.detallearbol", $parametro);
     }
 
    

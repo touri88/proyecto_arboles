@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>{{$titulo}}</h1><br><br>
+<h1 class="text-3xl text-center font-bold pt-20">{{$titulo}}</h1><br><br>
 @foreach ($tierra as $item)
     
     <h2>Hay un {{$item->tipo_tierra}} 

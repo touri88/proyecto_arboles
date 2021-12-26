@@ -6,7 +6,7 @@
 
 
 
-<h1>{{$titulo}}</h1><br><br>
+<h1 class="text-3xl text-center font-bold pt-20">{{$titulo}}</h1><br><br>
 @foreach ($arboles as $item)
     
     <h2>El árbol {{$item->tipo_arbol}} 

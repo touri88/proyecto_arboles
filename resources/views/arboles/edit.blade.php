@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1>Editar un arbol</h1>
+<h1 class="text-3xl text-center font-bold pt-20">Editar un arbol</h1>
 @foreach ($arboles as $item)
 
 <form action="{{ url('/arbol/'. $item->idarbol) }}" method="post">

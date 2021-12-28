@@ -4,7 +4,7 @@
 
 @section('content')
 
-<h1 class="text-3xl text-center font-bold pt-20">Perfil de usuario {{ auth()->user()->name }}</h1>
+<h1>Perfil de usuario de {{ auth()->user()->name }}</h1>
 
 
 <h2>{{ $titulo }}</h2>
@@ -19,7 +19,7 @@
     </thead>
     <tbody>
         @foreach ($arboles as $item)
-            <tr>
+            <tr class="element">
                 <td><a href="{{ route('arbol.index'); }}/{{ $item->idarbol }}"> {{ $item->tipo_arbol }} </td>
                 <td><a href="{{ route('arbol.index'); }}/{{ $item->idarbol }}"> {{ $item->provincia_arbol }} </td>
                 <td><a href="{{ route('arbol.index'); }}/{{ $item->idarbol }}"> {{ $item->localidad_arbol }} </td>
@@ -51,16 +51,16 @@
     </thead>
     <tbody>
         @foreach ($tierra as $item)
-            <tr>
+            <tr class="element">
                 <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->tipo_tierra }} </a></td>
                 <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->provincia_tierra }} </a></td>
                 <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->localidad_tierra }} </a></td>
-                <td> <a href="{{ url('/tierra/'. $item->idtierra. '/edit') }}">Editar</a> | 
+                <td> <a class="aciones" href="{{ url('/tierra/'. $item->idtierra. '/edit') }}">Editar</a> | 
 
                     <form action="{{ url('/tierra/'. $item->idtierra) }}" method="post">
                         @csrf
                         {{ method_field('DELETE') }}
-                        <input type="submit" onclick="return confirm('Desea borrar?')" value="Borrar">
+                        <input class="borrar" type="submit" onclick="return confirm('Desea borrar?')" value="Borrar">
 
                     </form>
                 </td>

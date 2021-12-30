@@ -6,16 +6,17 @@
 
 
 
-<h1 class="text-3xl text-center font-bold pt-20" > {{ $titulo }} </h1>
-<div class="form-floating mb-3">
+<h1 class="text-success text-center" > {{ $titulo }} </h1>
+<div class="flex-row">
+<div class="input-group w-auto p-3 justify-content-evenly d-flex">
 <form class="mb-3" action="arbol" method="get">
-    <label class="form-control" >Provincia: </label><input class="form-control" type="text" name="provincia_arbol"><br>
-    <label class="form-control">Localidad: </label><input class="form-control" type="text" name="localidad_arbol"><br>
-    <label class="form-control">Tipo: </label><input class="form-control" type="text" name="tipo_arbol"><br>
+    <label class="input-group-text bg-success text-white" >Provincia: </label><input class="form-control" type="text" name="provincia_arbol"><br>
+    <label class="input-group-text bg-success text-white">Localidad: </label><input class="form-control" type="text" name="localidad_arbol"><br>
+    <label class="input-group-text bg-success text-white">Tipo: </label><input class="form-control" type="text" name="tipo_arbol"><br>
     <button class="btn btn-success" type="submit">Buscar</button>
 </form>
 </div>
-<div class="Tab">
+
 <table class="table table-success table-striped table-hover">
     <thead class= "bg-success">
         <tr>

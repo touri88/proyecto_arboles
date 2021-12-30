@@ -6,7 +6,7 @@
 
 
 
-<h1 class="text-3xl text-center font-bold pt-20">{{ $titulo }}</h1>
+<h1 class="text-success text-center">{{ $titulo }}</h1>
     <form action="{{ route('arbol.store'); }}" method="post">
     @csrf
     @include('arboles.form')

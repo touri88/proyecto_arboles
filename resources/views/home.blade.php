@@ -5,7 +5,7 @@
 @section('content')
 
       
-        <h1 class="text-success text-center bg-muted" >Bienvenido a Arbolink</h1>
+        <h1 class="text-success text-center" >Bienvenido a Arbolink</h1>
 
 
 <div class="container">

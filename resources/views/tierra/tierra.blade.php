@@ -6,34 +6,35 @@
 
 
 
-<h1 class="text-3xl text-center font-bold pt-20"> {{ $titulo }} </h1>
-
+<h1 class="text-success text-center"> {{ $titulo }} </h1>
+<div class="flex-row">
+    <div class="input-group w-auto p-3 justify-content-evenly d-flex">
 <form action="tierra" method="get">
-    <label>Provincia: </label><input type="text" name="provincia_tierra"><br>
-    <label>Localidad: </label><input type="text" name="localidad_tierra"><br>
-    <label>Tipo: </label><input type="text" name="tipo_tierra"><br>
-    <button type="submit">Buscar</button>
+    <label class="input-group-text bg-success text-white">Provincia: </label><input class="form-control" type="text" name="provincia_tierra"><br>
+    <label class="input-group-text bg-success text-white">Localidad: </label><input class="form-control" type="text" name="localidad_tierra"><br>
+    <label class="input-group-text bg-success text-white">Tipo: </label><input class="form-control" type="text" name="tipo_tierra"><br>
+    <button class="btn btn-success" type="submit">Buscar</button>
 </form>
-
-<table>
-    <thead>
+</div>
+<table class="table table-success table-striped table-hover">
+    <thead class= "bg-success">
         <tr>
-            <th>Tipo de espacio</th>
-            <th>Provincia</th>
-            <th>Localidad</th>
+            <th class="text-center">Tipo de espacio</th>
+            <th class="text-center">Provincia</th>
+            <th class="text-center">Localidad</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($tierra as $item)
             <tr>
-                <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->tipo_tierra }} </a></td>
-                <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->provincia_tierra }} </a></td>
-                <td><a href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->localidad_tierra }} </a></td>
+                <td class="text-center"><a class="nav-link text-success" href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->tipo_tierra }} </a></td>
+                <td class="text-center"><a class="nav-link text-success" href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->provincia_tierra }} </a></td>
+                <td class="text-center"><a class="nav-link text-success" href="{{ route('tierra.index'); }}/{{ $item->idtierra }}"> {{ $item->localidad_tierra }} </a></td>
             </tr>
         @endforeach
     </tbody>
 </table>
-
+</div>
 
 
 @endsection
